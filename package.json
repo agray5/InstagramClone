@@ -1,0 +1,23 @@
+{
+  "name": "insatgramclone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sever.js",
+  "scripts": {
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "April Gray <aprgray5@gmail.com> (https://agray5.com)",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.18.8"
+  },
+  "dependencies": {
+    "concurrently": "^4.1.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.16"
+  }
+}
