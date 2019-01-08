@@ -6,7 +6,7 @@ class HomePage extends Component {
     render(){
         return(
             <div>
-                
+                This is the home page and your a logged in!
             </div>
         );
     }

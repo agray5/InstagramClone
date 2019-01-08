@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import {
-    NavLink
-} from 'react-router-dom';
-
 import { StyledForm } from '../styles/StyledForm';
 
-class LoginPage extends Component {
+class SignupPage extends React.Component {
     constructor(props){
         super(props);
 
@@ -22,20 +18,19 @@ class LoginPage extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch((err) => {
-            console.log(`${err.code}: ${err.message}`)
-        });
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch((err) => {
+            console.log(`${err.code}: ${err.message}`)                                                
+        })
     }
-    
+
     handleInput = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
     }
-    
-    render() {
-        console.log(this.state);
-        return (
+
+    render(){
+        return(
             <div>
                 <StyledForm onSubmit={this.handleSubmit}>
                     <input
@@ -53,12 +48,10 @@ class LoginPage extends Component {
                         onChange={this.handleInput}
                     />
                     <button className="btn" type="submit">Login</button>
-                </StyledForm>    
-                <NavLink to="/signup">Create Account</NavLink>
-            </div>                      
+                </StyledForm> 
+            </div>
         );
     }
 }
 
-export default LoginPage;
-
+export default SignupPage
