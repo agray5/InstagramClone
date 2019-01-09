@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import firebase from 'firebase';
 import {
     BrowserRouter as Router, Route, Redirect
@@ -19,14 +20,16 @@ class App extends Component {
 
     componentDidMount () {
         firebase.auth().onAuthStateChanged((user) => {
-            user ? (
+            if(user) {
+                axios.get(`/api/user/${user.uid}`).then(res => {
+                    res.data // need to setState so we can use these details late, or we will be throwing it away.
+                }) // if this fails - we route to X otherwise route to Y
+                // need some logic
                 this.setState({ loggedIn: true })
-            ) : (
+            }
+            else 
                 this.setState({ loggedIn: false })
-            )
         })
-        // need some sort of check to see if its first time login
-        // can do this by checking in the db if REQUIRED sections are NOT equal to NULL
     }
     
     render() {
