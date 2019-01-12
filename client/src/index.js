@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as serviceWorker from './serviceWorker';
+
 import './styles/index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
-import firebase from "firebase";
-import { firebase_config } from './config'
+import Firebase, { FirebaseContext } from './components/firebase';
 
-//Initialize firebase
-firebase.initializeApp(firebase_config);
-
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <FirebaseContext.Provider value={new Firebase()}>
+    <App />
+  </FirebaseContext.Provider>, document.getElementById('root')
+);
 
 serviceWorker.unregister();

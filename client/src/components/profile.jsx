@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import axios from 'axios'
 import { StyledForm } from '../styles/StyledForm';
 
-class SignupPage extends React.Component {
+class ProfilePage extends React.Component {
     constructor(props){
         super(props);
 
@@ -15,12 +16,13 @@ class SignupPage extends React.Component {
         this.handleInput = this.handleInput.bind(this);
     }
 
+    componentWillMount() {
+        // get the already inputted data and setState
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
-
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch((err) => {
-            console.log(`${err.code}: ${err.message}`)                                                
-        })
+        // save the new data to the database against the uuid provided from authUser
     }
 
     handleInput = (e) => {
@@ -34,24 +36,26 @@ class SignupPage extends React.Component {
             <div>
                 <StyledForm onSubmit={this.handleSubmit}>
                     <input
-                        name="email"
-                        type="email"
-                        placeholder="Enter Email"
-                        value={this.state.email}
+                        name="name"
+                        type="text"
+                        placeholder="Name"
+                        value={this.state.name}
                         onChange={this.handleInput}
                     />
                     <input
-                        name="password"
-                        type="password"
-                        placeholder="Enter Password"
-                        value={this.state.password}
+                        name="dob"
+                        type="date"
+                        placeholder=""
+                        value={this.state.dob}
                         onChange={this.handleInput}
                     />
-                    <button className="btn" type="submit">Login</button>
+                    <input type="radio" name="gender" value="male" checked/> Male 
+                    <input type="radio" name="gender" value="female"/> Female
+                    <input type="radio" name="gender" value="other"/> Other
                 </StyledForm> 
             </div>
         );
     }
 }
 
-export default SignupPage
+export default ProfilePage

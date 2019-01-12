@@ -1,0 +1,4 @@
+No feedback upon Login and Signup click - cant tell if im ever logged in or if i signed up.
+Maybe a quick way of displaying name/email just to show you are now logged in?
+Logout button
+Login

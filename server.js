@@ -1,9 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParse = require('body-parser');
-const items = require('./routes/api/createUser')
+const cors = require('cors');
+const users = require('./routes/api/createUser')
 
 const app = express();
+
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 app.use(bodyParse.json());
 
@@ -15,5 +21,5 @@ mongoose
     .then(() => console.log('Sucessfully connected to the DB on ' + db))
     .catch((err) => console.log(err))
 
-app.use('/api/user', items)
+app.use('/api/user', cors(corsOptions), users)
 app.listen(port, () => console.log('Listening on port: ' + port))

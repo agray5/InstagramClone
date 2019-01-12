@@ -26,7 +26,11 @@ const createUserSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    newUser: {
+        type: Boolean,
+        default: true
     }
 })
 
-module.exports = Item = mongoose.model('item', createUserSchema);
+module.exports = Users = mongoose.model('users', createUserSchema);
